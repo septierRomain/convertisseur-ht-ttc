@@ -9,10 +9,10 @@ function App() {
   const [ttc, setTtc] = useState('') 
 
   const calculate = () => {
-    const resultHT = (ttc/(1+(taux/100)))
-    const resultTVA = ((ttc/(1+(taux/100))) * (taux/100) )
-    setTva(resultTVA)
-    setHt(resultHT)
+    const resultHT = ( ttc / (1+( taux/100 )) )
+    const resultTVA = ( (ttc / (1+( taux/100 ) )) * (taux/100) )
+    setTva((resultTVA).toFixed(2))
+    setHt((resultHT).toFixed(2))
   }
 
   const clear = () => {
