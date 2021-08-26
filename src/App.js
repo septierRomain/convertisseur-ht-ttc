@@ -40,12 +40,13 @@ function App() {
             </label>
           </div>
           <div>
-            <label>
+            <label htmlFor='ttc'>
               TTC
               <input 
                 name='ttc'
                 type='number'
                 placeholder='TTC'
+                value={ttc}
                 onChange={(e) => setTtc(parseInt(e.target.value))}
               />
             </label>
