@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 import Undo from './Assets/undo.svg'
+import Dougs from './Assets/dougs.svg'
 
 function App() {
 
@@ -30,44 +31,54 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Convertissez en fonction du taux de TVA</h1>
-        <div id='taux'>
-            <label htmlFor='taux'>
-              Taux en % :
-              <input 
-                name='taux'
-                type='number'
-                placeholder='Taux de TVA'
-                value={taux}
-                onChange={(e) => setTaux(parseInt(e.target.value) || 0)}
-              />
-            </label>
-        </div>
-          <div id="ttc">
-            <div>
-              <label htmlFor='ttc'>
-                Montant TTC :
+        <header className="App-header">
+          <img src={Dougs} alt="Logo Dougs" />
+          <p>convertisseur HT-TTC</p>
+        </header>
+        <div className="container">
+        <h1>Retrouvez le montant hors-taxe à partir du TTC</h1>
+        <div className="result">
+          <div id='taux'>
+              <label htmlFor='taux' className='label'>
+                Taux en % :
                 <input 
-                  name='ttc'
-                  type='number'
-                  placeholder='TTC'
-                  value={ttc}
-                  onChange={(e) => setTtc(parseInt(e.target.value) || 0)}
+                  name='taux'
+                  type='text'
+                  placeholder='Taux de TVA'
+                  value={taux}
+                  onChange={(e) => setTaux(parseInt(e.target.value) || 0)}
                 />
               </label>
+          </div>
+            <div id="ttc">
+                <label htmlFor='ttc' className='label'>
+                  Montant TTC :
+                  <input 
+                    name='ttc'
+                    type='text'
+                    placeholder='TTC'
+                    value={ttc}
+                    onChange={(e) => setTtc(parseInt(e.target.value) || 0)}
+                  />
+                </label>
+              <div>
+                <div className="label"><p>Montant HT :</p><p>{ht}</p></div>
+                <div className="label"><p>Montant de la TVA :</p><p>{tva}</p></div>
               </div>
-            <div>
-              <p>Montant HT : {ht}</p>
-              <p>Montant de la TVA : {tva}</p>
-            </div>
-        </div>     
-      <button
-        onClick={clear}
-      >
-        <img src={Undo} alt='recommencer' />
-      </button>
-      </header>
+          </div>
+
+        </div>
+          <div className="button_undo">
+            <button
+              className='undo'
+              onClick={clear}
+            >
+              <img src={Undo} alt='recommencer' />
+              recommencer
+            </button>            
+          </div>    
+        </div>
+
     </div>
   );
 }

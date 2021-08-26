@@ -1,42 +1,96 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'eina03';
+  src: url('./Assets/font/eina03-semibold-webfont.woff2') format('woff2'),
+       url('./Assets/font/eina03-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  color: #001A25;
+  margin: 0;
+  padding: 0;
+  min-height: 95vh;
+  background-position: bottom -120px right -70px;
+  background-image: url('./Assets/Pattern.svg');
+  background-repeat: no-repeat;
+  font-size: 16px;
 }
-button {
-  color: white;
-  background: #282c34;
-  border: none;
+p, input {
+  font-family: 'Open Sans';
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1, h2, h3, h4, h5 {
+  font-family: "eina03";
+}
+.button_undo {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+.undo {
+  color: white;
+  background: #11ABEC;
+  border-radius: 44px;
+  border: none;
+  width: 190px;
+  height: 50px;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.undo>img {
+  margin-right: 8px;
+}
+
+input {
+  margin-left: 1em;
+  border: solid 1px #d4dadf;
+  border-radius: 5px;
+  text-align: end;
+}
+input:focus {
+  background-color: teal;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#taux {
+  margin-bottom: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+.App-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 2em;
+  padding-bottom: 2em;
+}
+.App-header>img {
+  padding-right: 16px;
+}
+.App-header>p {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 120%;
+}
+.result {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.label {
+  display: flex;
+  justify-content: space-between;
 }
