@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+
+import Undo from './Assets/undo.svg'
 
 function App() {
 
-  const [taux, setTaux] = useState('') 
-  const [ht, setHt] = useState('') 
-  const [tva, setTva] = useState('') 
-  const [ttc, setTtc] = useState('') 
+  useEffect(() => {
+    calculate()
+  })
 
   const calculate = () => {
     const resultHT = ( ttc / (1+( taux/100 )) )
@@ -22,64 +23,50 @@ function App() {
     setTaux('')
   }
 
+  const [taux, setTaux] = useState('') 
+  const [ttc, setTtc] = useState('') 
+  const [ht, setHt] = useState('') 
+  const [tva, setTva] = useState('') 
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Convertissez du TTC vers le HT</h1>
-        <div>
-          <div>
+        <h1>Convertissez en fonction du taux de TVA</h1>
+        <div id='taux'>
             <label htmlFor='taux'>
-              Taux
+              Taux en % :
               <input 
                 name='taux'
                 type='number'
                 placeholder='Taux de TVA'
                 value={taux}
-                onChange={(e) => setTaux(parseInt(e.target.value))}
+                onChange={(e) => setTaux(parseInt(e.target.value) || 0)}
               />
             </label>
-          </div>
-          <div>
-            <label htmlFor='ttc'>
-              TTC
-              <input 
-                name='ttc'
-                type='number'
-                placeholder='TTC'
-                value={ttc}
-                onChange={(e) => setTtc(parseInt(e.target.value))}
-              />
-            </label>
-            </div>
-          <div>
-            <label>
-              HT
-              <input 
-                name='ht'
-                type='number'
-                placeholder='HT'
-                value={ht}
-              />
-            </label>
-            </div>
-          <div>
-            <label>
-              TVA
-              <input 
-                name='tva'
-                type='number'
-                placeholder='montant de TVA'
-                value={tva}
-              />
-            </label>
-            </div>
-            <button
-              onClick={calculate}
-            >Calculez</button>
-            <button
-              onClick={clear}
-            >recommencer</button>
         </div>
+          <div id="ttc">
+            <div>
+              <label htmlFor='ttc'>
+                Montant TTC :
+                <input 
+                  name='ttc'
+                  type='number'
+                  placeholder='TTC'
+                  value={ttc}
+                  onChange={(e) => setTtc(parseInt(e.target.value) || 0)}
+                />
+              </label>
+              </div>
+            <div>
+              <p>Montant HT : {ht}</p>
+              <p>Montant de la TVA : {tva}</p>
+            </div>
+        </div>     
+      <button
+        onClick={clear}
+      >
+        <img src={Undo} alt='recommencer' />
+      </button>
       </header>
     </div>
   );
