@@ -51,10 +51,10 @@ input {
   border-radius: 5px;
   text-align: end;
 }
-input:focus {
+/* input:focus {
   background-color: teal;
   color: white;
-}
+} */
 
 #taux {
   margin-bottom: 1em;
