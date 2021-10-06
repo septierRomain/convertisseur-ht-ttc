@@ -112,13 +112,13 @@ MEDIA QUERIES
     width: 70%;
   }
   .App-header>p {
-    font-size: 12px;
+    font-size: 13px;
   }
   .result {
     width: 100%;
   }
   .css-b62m3t-container {
-    /* width: 190px; */
+    width: 134px;
   }
   input {
     width: 120px;
