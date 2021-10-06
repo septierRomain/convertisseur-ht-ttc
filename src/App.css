@@ -148,4 +148,7 @@ MEDIA QUERIES
   .result {
     width: 63%;
   }
+  h1 {
+    margin-bottom: 2em;
+  }
 }

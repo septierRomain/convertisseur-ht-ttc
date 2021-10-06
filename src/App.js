@@ -67,7 +67,7 @@ function App() {
           <p>convertisseur HT-TTC</p>
         </header>
         <div className="container">
-        <h1>Retrouvez le montant HT à partir du TTC</h1>
+        <h1>Retrouvez le montant HT à partir du TTC et inversement</h1>
         <div className="result">
           <div id='taux_tva'>
             <label htmlFor='taux' className='label' >
