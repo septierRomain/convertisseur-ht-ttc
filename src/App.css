@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'eina03';
   src: url('./Assets/font/eina03-semibold-webfont.woff2') format('woff2'),
-       url('./Assets/font/eina03-semibold-webfont.woff') format('woff');
+      url('./Assets/font/eina03-semibold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -60,7 +60,7 @@ input {
   color: white;
 } */
 
-#taux {
+#taux_tva {
   margin-bottom: 1em;
 }
 

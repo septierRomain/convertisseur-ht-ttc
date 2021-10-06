@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import Select from 'react-select'
 
 import Undo from './Assets/undo.svg'
 import Dougs from './Assets/dougs.svg'
@@ -15,6 +16,7 @@ function App() {
   const [ttc, setTtc] = useState('') 
   const [ht, setHt] = useState('') 
   const [tva, setTva] = useState('') 
+  const [value, setValue] = useState('') 
   const [champTaux,setChampTaux] = useState(true)
   const [champ,setChamp] = useState(true)
 
@@ -24,22 +26,24 @@ function App() {
     const resultTtc = ( ht * (1 + (taux/100)) )
     
     if (taux !== ''){
-      if(ttc){
+
+      if(ttc !== ''){
         setHt((resultHT).toFixed(2))
       } else if (ht){
         setTtc((resultTtc).toFixed(2))
+      } else {
+        setChamp(false)
       }
-    }else {
+
+    } else {
       setChampTaux(false)
     }
 
-    // if (ttc || ht === ''){
-    //   setChamp(false)
-    // }
-    if(taux === ''){
-      setChampTaux(false)
-    }
     setTva((resultTVA).toFixed(2))
+  }
+
+  const handleKey = () => {
+    setChamp(true)
   }
 
   const clear = () => {
@@ -49,6 +53,18 @@ function App() {
     setTaux('')
     setChampTaux(true)
     setChamp(true)
+    setValue('')
+  }
+
+  const options = [
+    {value: '20', label: '20%'},
+    {value: '10', label: '10%'},
+    {value: '5.5', label: '5.5%'},
+  ]
+  const handleChange = (value) => {
+    setValue(value)
+    setTaux(value.value)
+    setChampTaux(true)
   }
 
   return (
@@ -60,17 +76,16 @@ function App() {
         <div className="container">
         <h1>Retrouvez le montant HT à partir du TTC</h1>
         <div className="result">
-          <div id='taux'>
-              <label htmlFor='taux' className='label'>
+          <div id='taux_tva'>
+              <label htmlFor='taux' className='label' >
                 Taux en % :
-                <input 
-                  name='taux'
-                  type='text'
-                  placeholder='Taux de TVA'
-                  value={taux}
-                  max="2"
-                  required
-                  onChange={(e) => setTaux((e.target.value) || 0)}
+                <Select 
+                name="tva"
+                id="taux"
+                value={value}
+                onChange={handleChange}
+                options={options}
+                placeholder='Choisissez un taux'
                 />
               </label>
 
@@ -79,6 +94,7 @@ function App() {
                   <p className='warning'>Merci de renseigner un taux de TVA</p>
                 </div>
               }
+
           </div>
             <div id="ttc">
                 <label htmlFor='ttc' className='label'>
@@ -88,8 +104,9 @@ function App() {
                     type='text'
                     placeholder='TTC'
                     value={ttc}
-                    readOnly={ht ? true : false}
+                    // readOnly={ht ? true : false}
                     onChange={(e) => setTtc((e.target.value) || 0)}
+                    onFocus={handleKey}
                   />
                 </label> 
 
