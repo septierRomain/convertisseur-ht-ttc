@@ -71,7 +71,7 @@ function App() {
         <div className="result">
           <div id='taux_tva'>
             <label htmlFor='taux' className='label' >
-              Taux en % :
+              Taux de TVA en % :
               <Select 
               name="tva"
               id="taux"
