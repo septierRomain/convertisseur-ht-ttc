@@ -54,14 +54,15 @@ input {
   border: solid 1px #d4dadf;
   border-radius: 5px;
   text-align: end;
+  height: 30px;
+  width: 42%;
 }
-/* input:focus {
-  background-color: teal;
-  color: white;
-} */
 
-#taux_tva {
+#taux_tva, #ttc, #ht, #tva {
   margin-bottom: 1em;
+}
+#tva>input{
+  width: 40px;
 }
 
 .container {

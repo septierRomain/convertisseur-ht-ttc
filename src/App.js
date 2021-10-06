@@ -160,7 +160,17 @@ function App() {
               <p className='warning'>Merci de renseigner un montant HT ou TTC</p>
             </div>}
 
-            <div className="label"><p>Montant de la TVA :</p><p>{tva}</p></div>
+            <div id='tva'>
+              <label htmlFor="tva" className='label'>Montant de la TVA :
+                <input 
+                  name='tva'
+                  type='text'
+                  placeholder='TVA'
+                  readOnly
+                  value={tva}
+                />              
+              </label>
+            </div>
               
 
 
