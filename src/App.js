@@ -32,7 +32,9 @@ function App() {
   const options = [
     {value: '20', label: '20%'},
     {value: '10', label: '10%'},
+    {value: '8.5', label: '8.5%'},
     {value: '5.5', label: '5.5%'},
+    {value: '2.1', label: '2.1%'},
   ]
   const handleChange = (value) => {
     setValue(value)
@@ -43,18 +45,19 @@ function App() {
   const calculHT = () => {
     const resultHT = ( ttc / (1+( taux/100 )) )
     const resultTVA = ( (ttc / (1+( taux/100 ) )) * (taux/100) )
-    if(ht !== null){
+    if(taux){
       setHt((resultHT).toFixed(2))
       setTva((resultTVA).toFixed(2))
-    }
+    } else if(taux === '') {setChampTaux(false)}
   }
+
   const calculTTC = () => {
     const resultTTC = ( ht * (1 + (taux/100)) )
     const resultTVA = ( (ht * ( taux/100 ) ))
-    if (ttc !== null){
+    if (taux){
       setTtc((resultTTC).toFixed(2))
       setTva((resultTVA).toFixed(2))
-    }
+    } else if(taux === '') {setChampTaux(false)}
   }
 
   return (
@@ -133,13 +136,7 @@ function App() {
                 onBlur={calculTTC}
               />}
               </label>
-
             </div>
-
-            {champ ? '' : 
-            <div>
-              <p className='warning'>Merci de renseigner un montant HT ou TTC</p>
-            </div>}
 
             <div id='tva'>
               <label htmlFor="tva" className='label'>
