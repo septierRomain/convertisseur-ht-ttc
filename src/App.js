@@ -4,7 +4,6 @@ import Select from 'react-select'
 
 import Undo from './Assets/undo.svg'
 import Dougs from './Assets/dougs.svg'
-import Calcul from './Assets/calculator-solid.svg'
 
 function App() {
 
@@ -15,28 +14,6 @@ function App() {
   const [value, setValue] = useState('') 
   const [champTaux,setChampTaux] = useState(true)
   const [champ,setChamp] = useState(true)
-
-  const calculate = () => {
-    const resultHT = ( ttc / (1+( taux/100 )) )
-    const resultTVA = ( (ttc / (1+( taux/100 ) )) * (taux/100) )
-    const resultTtc = ( ht * (1 + (taux/100)) )
-    
-    if (taux !== ''){
-
-      if(ttc !== ''){
-        setHt((resultHT).toFixed(2))
-      } else if (ht){
-        setTtc((resultTtc).toFixed(2))
-      } else {
-        setChamp(false)
-      }
-
-    } else {
-      setChampTaux(false)
-    }
-
-    setTva((resultTVA).toFixed(2))
-  }
 
   const handleKey = () => {
     setChamp(true)
@@ -65,14 +42,18 @@ function App() {
 
   const calculHT = () => {
     const resultHT = ( ttc / (1+( taux/100 )) )
+    const resultTVA = ( (ttc / (1+( taux/100 ) )) * (taux/100) )
     if(ht !== null){
       setHt((resultHT).toFixed(2))
+      setTva((resultTVA).toFixed(2))
     }
   }
   const calculTTC = () => {
     const resultTTC = ( ht * (1 + (taux/100)) )
+    const resultTVA = ( (ht * ( taux/100 ) ))
     if (ttc !== null){
-      setHt((resultTTC).toFixed(2))
+      setTtc((resultTTC).toFixed(2))
+      setTva((resultTVA).toFixed(2))
     }
   }
 
@@ -86,17 +67,17 @@ function App() {
         <h1>Retrouvez le montant HT à partir du TTC</h1>
         <div className="result">
           <div id='taux_tva'>
-              <label htmlFor='taux' className='label' >
-                Taux en % :
-                <Select 
-                name="tva"
-                id="taux"
-                value={value}
-                onChange={handleChange}
-                options={options}
-                placeholder='Choisissez un taux'
-                />
-              </label>
+            <label htmlFor='taux' className='label' >
+              Taux en % :
+              <Select 
+              name="tva"
+              id="taux"
+              value={value}
+              onChange={handleChange}
+              options={options}
+              placeholder='Choisissez un taux'
+              />
+            </label>
 
               {champTaux ? '' :
                 <div>
@@ -123,7 +104,7 @@ function App() {
                   type='text'
                   placeholder='TTC'
                   value={ttc}
-                  onChange={(e) => setTtc((e.target.value) || 0)}
+                  onChange={(e) => setTtc((e.target.value) || '')}
                   onFocus={handleKey}
                   onBlur={calculHT}
                 />                  
@@ -148,7 +129,7 @@ function App() {
                 type='text'
                 placeholder='HT'
                 value={ht}
-                onChange={(e) => setHt((e.target.value) || 0)}
+                onChange={(e) => setHt((e.target.value) || '')}
                 onBlur={calculTTC}
               />}
               </label>
@@ -161,7 +142,8 @@ function App() {
             </div>}
 
             <div id='tva'>
-              <label htmlFor="tva" className='label'>Montant de la TVA :
+              <label htmlFor="tva" className='label'>
+                Montant de la TVA :
                 <input 
                   name='tva'
                   type='text'
@@ -172,17 +154,8 @@ function App() {
               </label>
             </div>
               
-
-
         </div>
           <div className="button_undo">
-            <button 
-            className='undo' 
-            onClick={() => calculate()}
-            >
-              <img src={Calcul} alt="calcul" style={{height:'20px'}} />
-              Calcul
-            </button>
             <button
               className='undo'
               onClick={()=>clear()}
