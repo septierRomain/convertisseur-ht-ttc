@@ -73,7 +73,6 @@ input {
   align-items: center;
   margin: auto;
   margin-top: 2em;
-  padding-bottom: 2em;
 }
 .App-header>img {
   padding-right: 16px;
@@ -124,6 +123,9 @@ MEDIA QUERIES
   input {
     width: 120px;
   }
+  .App-header {
+    padding-bottom: 1em;
+  }
 }
 
 /* DESKTOP */
@@ -136,6 +138,9 @@ MEDIA QUERIES
   }
   .container, .App-header {
     width: 50%;
+  }
+  .App-header {
+    padding-bottom: 2em;
   }
   .App-header>p {
     font-size: 18px;
