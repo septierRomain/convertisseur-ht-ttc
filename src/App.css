@@ -55,28 +55,22 @@ input {
   border-radius: 5px;
   text-align: end;
   height: 30px;
-  width: 42%;
+  padding-right: 10px;
 }
-
 #taux_tva, #ttc, #ht, #tva {
   margin-bottom: 1em;
-}
-#tva>input{
-  width: 40px;
 }
 
 .container {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
   margin: auto;
 }
 .App-header {
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 50%;
   margin: auto;
   margin-top: 2em;
   padding-bottom: 2em;
@@ -84,13 +78,8 @@ input {
 .App-header>img {
   padding-right: 16px;
 }
-.App-header>p {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 120%;
-}
+
 .result {
-  width: 63%;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -108,4 +97,50 @@ input {
   border-radius: 0.4em;
   text-align: center;
   padding: 0.2em;
+}
+.App-header>p {
+  font-weight: 600;
+  line-height: 120%;
+}
+
+/* 
+MEDIA QUERIES
+*/
+
+/* SMARTPHONE */
+@media only screen and (max-width: 1025px) {
+  .container, .App-header {
+    width: 70%;
+  }
+  .App-header>p {
+    font-size: 12px;
+  }
+  .result {
+    width: 100%;
+  }
+  .css-b62m3t-container {
+    width: 190px;
+  }
+  input {
+    width: 120px;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1026px) {
+  .css-b62m3t-container {
+    width: 200px;
+  }
+  input {
+    width: 186px;
+  }
+  .container, .App-header {
+    width: 50%;
+  }
+  .App-header>p {
+    font-size: 18px;
+  }
+  .result {
+    width: 63%;
+  }
 }
