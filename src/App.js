@@ -42,7 +42,8 @@ function App() {
     setChampTaux(true)
   }
 
-  const calculHT = () => {
+  const calculHT = (e) => {
+    e.preventDefault()
     const resultHT = ( ttc / (1+( taux/100 )) )
     const resultTVA = ( (ttc / (1+( taux/100 ) )) * (taux/100) )
     if(taux){
@@ -51,7 +52,8 @@ function App() {
     } else if(taux === '') {setChampTaux(false)}
   }
 
-  const calculTTC = () => {
+  const calculTTC = (e) => {
+    e.preventDefault()
     const resultTTC = ( ht * (1 + (taux/100)) )
     const resultTVA = ( (ht * ( taux/100 ) ))
     if (taux){
@@ -90,53 +92,57 @@ function App() {
 
           </div>
 
-            <div id="ttc">
-              <label htmlFor='ttc' className='label'>
-                Montant TTC :
-                {ht ? 
+            <form action="submit" onSubmit={calculHT}>
+              <div id="ttc">
+                <label htmlFor='ttc' className='label'>
+                  Montant TTC :
+                  {ht ? 
+                  <input 
+                    name='ttc'
+                    type='text'
+                    placeholder='TTC'
+                    value={ttc}
+                    readOnly
+                  />
+                  :
+                  <input 
+                    name='ttc'
+                    type='text'
+                    placeholder='TTC'
+                    value={ttc}
+                    onChange={(e) => setTtc((e.target.value) || '')}
+                    onFocus={handleKey}
+                    onBlur={calculHT}
+                  />                  
+                }
+                </label> 
+              </div>
+            </form>
+            
+            <form action="submit" onSubmit={calculTTC}>
+              <div id='ht'>
+              <label htmlFor='ht' className='label'>
+                  Montant HT :
+                {ttc ?
                 <input 
-                  name='ttc'
+                  name='ht'
                   type='text'
-                  placeholder='TTC'
-                  value={ttc}
+                  placeholder='HT'
                   readOnly
+                  value={ht}
                 />
-                :
+                :                 
                 <input 
-                  name='ttc'
+                  name='ht'
                   type='text'
-                  placeholder='TTC'
-                  value={ttc}
-                  onChange={(e) => setTtc((e.target.value) || '')}
-                  onFocus={handleKey}
-                  onBlur={calculHT}
-                />                  
-              }
-              </label>
-            </div>
-
-            <div id='ht'>
-            <label htmlFor='ht' className='label'>
-                Montant HT :
-              {ttc ?
-              <input 
-                name='ht'
-                type='text'
-                placeholder='HT'
-                readOnly
-                value={ht}
-              />
-              :                 
-              <input 
-                name='ht'
-                type='text'
-                placeholder='HT'
-                value={ht}
-                onChange={(e) => setHt((e.target.value) || '')}
-                onBlur={calculTTC}
-              />}
-              </label>
-            </div>
+                  placeholder='HT'
+                  value={ht}
+                  onChange={(e) => setHt((e.target.value) || '')}
+                  onBlur={calculTTC}
+                />}
+                </label>
+              </div>
+            </form>
 
             <div id='tva'>
               <label htmlFor="tva" className='label'>
