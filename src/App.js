@@ -40,6 +40,9 @@ function App() {
     setValue(value)
     setTaux(value.value)
     setChampTaux(true)
+    setTva('')
+    setHt('')
+    setTtc('')
   }
 
   const calculHT = (e) => {
