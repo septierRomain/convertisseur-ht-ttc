@@ -64,6 +64,15 @@ function App() {
       setTva((resultTVA).toFixed(2))
     } else if(taux === '') {setChampTaux(false)}
   }
+  const calculTVA = (e) => {
+    e.preventDefault()
+    const resultTTC = ( tva / (1 - (1/(1+(taux/100))) ))
+    const resultHT = ( tva / (taux/100 ) )
+    if (taux){
+      setTtc((resultTTC).toFixed(2))
+      setHt((resultHT).toFixed(2))
+    } else if(taux === '') {setChampTaux(false)}
+  }
 
   return (
     <div className="App">
@@ -99,16 +108,7 @@ function App() {
               <div id="ttc">
                 <label htmlFor='ttc' className='label'>
                   Montant TTC :
-                  {ht ? 
-                  <input 
-                    name='ttc'
-                    type='text'
-                    placeholder='TTC'
-                    value={ttc}
-                    readOnly
-                  />
-                  :
-                  <input 
+                    <input 
                     name='ttc'
                     type='text'
                     placeholder='TTC'
@@ -116,8 +116,7 @@ function App() {
                     onChange={(e) => setTtc((e.target.value) || '')}
                     onFocus={handleKey}
                     onBlur={calculHT}
-                  />                  
-                }
+                    />
                 </label> 
               </div>
             </form>
@@ -126,23 +125,14 @@ function App() {
               <div id='ht'>
               <label htmlFor='ht' className='label'>
                   Montant HT :
-                {ttc ?
-                <input 
-                  name='ht'
-                  type='text'
-                  placeholder='HT'
-                  readOnly
-                  value={ht}
-                />
-                :                 
-                <input 
+                  <input 
                   name='ht'
                   type='text'
                   placeholder='HT'
                   value={ht}
                   onChange={(e) => setHt((e.target.value) || '')}
                   onBlur={calculTTC}
-                />}
+                />
                 </label>
               </div>
             </form>
@@ -154,8 +144,9 @@ function App() {
                   name='tva'
                   type='text'
                   placeholder='TVA'
-                  readOnly
                   value={tva}
+                  onChange={(e) => setTva((e.target.value) || '')}
+                  onBlur={calculTVA}
                 />              
               </label>
             </div>
